@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arya’s Birthday Invite</title>
+  <style>
+
+    .ubuntu-light {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .ubuntu-regular {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .ubuntu-medium {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .ubuntu-bold {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .ubuntu-light-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .ubuntu-regular-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .ubuntu-medium-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .ubuntu-bold-italic {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Ubuntu', sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px;
+      box-shadow: 0 8px 32px rgba(0, 255, 200, 0.2);
+    }
+
+    .accent-btn {
+      background: linear-gradient(180deg, #32de00, #00deac);
+      border: none;
+      padding: 15px 25px;
+      border-radius: 15px;
+      font-size: 1rem;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .accent-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Splash Video */
+    #splash {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    #splash video {
+      max-width: 90%;
+      max-height: 70%;
+      border-radius: 20px;
+    }
+    #splash button {
+      margin-top: 20px;
+    }
+
+    /* Top Mini Bar */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10px 20px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0,255,200,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .top-bar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .top-bar span {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* Fly-in animations */
+    .hidden {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .venue-section {
+      text-align: center;
+      font-size: 1.3rem;
+    }
+    .venue-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .venue-section iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+
+    .attendants li {
+      list-style: none;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      transition: background 0.3s;
+    }
+    .attendants li:hover {
+      background: rgba(0,255,200,0.2);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+    }
+    footer img {
+      max-width: 100px;
+      opacity: 0.8;
+    }
+.circle-img-container {
+  width: 64px;           /* Adjust to your preferred size */
+  height: 64px;          /* Must be equal to width for 1:1 */
+  border-radius: 50%;    /* Circular cutout */
+  overflow: hidden;      /* Crops edges outside circle */
+  display: inline-block; /* For use in list layouts */
+}
+.circle-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* Center crop to fill area */
+  object-position: center;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+
+  <div id="splash">
+    <video id="introVideo" autoplay controls>
+      <source src="./The Party - Made with Clipchamp.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+    <button class="accent-btn" onclick="closeSplash()">Skip</button>
+  </div> 
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <img src="./Lexus LFA.jpeg" alt="Profile Picture">
+    <span>Hello Kyona (Kiona Keswani)</span>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="glass venue-section hidden">
+      <img src="./TheParty.png" alt="Birthday Banner" style="width:25%; border-radius:20px;" class="hidden"><h1> The Party 2 : Second Edition</h1>
+    </div>
+
+    <!-- Venue Section -->
+    <div class="glass venue-section hidden">
+      <h1>AryaTac's 15th Birthday.</h1>
+      <p>Venue: N/A, Check back later when probed.</p>
+      <p>Invite 2.0</p>
+      <!-- Google Maps Embed -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2205.657396753803!2d73.79034927924756!3d18.593289518946264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1757076301064!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <r><p><a href="https://www.google.com/maps/@18.59329,73.790349,16z?hl=en&entry=ttu&g_ep=EgoyMDI1MDkwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="accent-btn">Open in Maps</a></p><button class="accent-btn" onclick="replayTrailer()">Want to see the Trailer again?</button>
+    </div>
+
+    <div class="glass hidden">
+      <center>
+      <h3>The rest of the Party.</h3>
+      <ul class="attendants">
+      <li><span class="circle-img-container"><img src="./AudiR8LMS.jpg" alt="ListItem" /></span><h3>0. Arya "AryaTac" Ghate🤓</h3></li>
+      <li><span class="circle-img-container"><img src="./Hammy.jpeg" alt="ListItem" /></span><h3>1. Soham "Hammy" Bansal🐹</h3></li>
+      <li><span class="circle-img-container"><img src="./Sanvood.jpg" alt="ListItem" /></span><h3>2. Sanvid "Sandwich" Koranne 🥪</h3></li>
+      <li><span class="circle-img-container"><img src="./Sam Bahadur.jpeg" alt="ListItem" /></span><h3>3. Rishi "Sam 'Bahadur' " Mitra🪖</h3></li>
+      <li><span class="circle-img-container"><img src="./Inevitable.jpeg" alt="ListItem" /></span><h3>4. Neil "Inevitable" D- whatever it was🫰</h3></li>
+      <li><span class="circle-img-container"><img src="./Adi.jpeg" alt="ListItem" /></span><h3>5. Aaditri "Adi" Bagde 🏍️</h3></li>
+      <li><span class="circle-img-container"><img src="./Lexus LFA.jpeg" alt="ListItem" /></span><h3>6. Kiona "Kyona" Keswani💸</h3></li>
+      <li><span class="circle-img-container"><img src="./Moon.jpeg" alt="ListItem" /></span><h3>7. Arjun "Moon" Chand 🌕</h3></li>
+      <li><span class="circle-img-container"><img src="./roheen.jpg" alt="ListItem" /></span><h3>8. Rohin "Hinro" Sasture 🥷</h3></li>
+      <li><span class="circle-img-container"><img src="./Caesar.jpeg" alt="ListItem" /></span><h3>9. Parth "Caesar" Patil 🏛️</h3></li>
+      <li><span class="circle-img-container"><img src="./Ultra Instinct.jpeg" alt="ListItem" /></span><h3>10. Anay "Ultra Instinct" Tiwari ⚡</h3></li>
+        </center>
+      </ul>
+    </div>
+
+    <div class="glass hidden">
+      <h3>Contact</h3>
+      <p>📱 +91-9665111880</p>
+      <a href="https://mailto:acvghate@gmail.com"><p>📧 acvghate@gmail.com</p></a>
+      <p>C2-101, Kunal Icon CHS, Pune</p>
+    </div>
+
+    <footer class="hidden">
+      <img src="./Aryatac.png" alt="AryaTac Logo">
+    </footer>
+  </div>
+
+  <script>
+    // Cookie check
+    window.onload = function() {
+      if (document.cookie.includes("visited=true")) {
+        document.getElementById("splash").style.display = "none";
+      } else {
+        document.cookie = "visited=true; max-age=" + 60*60*24*30; // 30 days
+      }
+    }
+
+    function closeSplash() {
+      document.getElementById("splash").style.display = "none";
+      document.getElementById("introVideo").pause();
+    }
+
+    function replayTrailer() {
+      document.getElementById("splash").style.display = "flex";
+      document.getElementById("introVideo").play();
+    }
+
+    // Fly-in animations on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    });
+
+    document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
